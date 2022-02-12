@@ -233,3 +233,153 @@ The bowtie view states that a user can pass from any node of IN through SCC to a
 
 ### Tendrils and tubes
 Tendrils consist of nodes reachable from IN or that can reach OUT. Tubes are the connection of an IN tendril and an OUT tendril, without passing through the SCC.
+
+----------------------
+
+## **7. Link analysis**
+## Link-based Signals
+### In-links and out-links
+In-links are links from other pages to a given pages; out-links are links present in a given page that leads to another page, which represents an endorsement of the latter by the creator of the first.
+
+### Anchor text as a signal
+The anchor text (e.g. in links) in a page represents its creator's description of the page to which it leads, which is an important feature for image search and is also incorporated as an additional feature in an inverted index.
+
+
+## PageRank
+The PageRank of a node is a value between 0 and 1, representing the probability of a random surfer to visit said note by choosing, at each step, a random out-link to move to the next page.
+
+
+## HITS - Hyperlink Induced Topic Search
+Query dependent algorithm that, starting with the answer set (e.g. pages containing the keywords), computes two scores for each page:
+- **Authority score:** pages with many in-links are called authorities;
+- **Hub score:** pages with many out-links are called hubs.
+
+----------------------
+
+## **8. Query processing**
+## Main processing techniques
+### Document-at-a-time
+Calculate complete scores for documents, by processing all term lists, one document at a time. At the end, all documents are sorted according to their score.
+
+### Term-at-a-time
+Accumulate scores for documents by processing term lists one at a time. When all terms are processed, the accumulators contain the final scores of all matching documents.
+
+
+## Optimisation
+### Purpose
+Query optimisation techniques allow the system to read less data from the index or process fewer documents, which is advantageous when using complex feature functions, to avoid scoring less useful documents, or when using simpler ones, to ignore as much inverted list data as possible.
+
+### Query transformation
+Query transformation techniques (e.g. stopwords, stemming, spellchecks, suggestions) can be used to refine the search, in order to reduce the amount of data processed.
+
+### Query expansion
+With query expansion techniques (e.g. use of synonyms and related words from a thesaurus, (pseudo) relevance feedback), users give additional input on query words or phrases.
+
+### Relevance feedback
+The idea of relevance feedback is to consider user feedback about the initial set of results when improving the final set.
+
+The user marks documents returned by the system as relevant or non-relevant and the system computes a better representation of the information, which is then displayed to the user.
+
+Especially useful for image search, where it may be difficult to express a query in words.
+
+### Pseudo relevance feedback
+Users often expect single interactions in search and are reluctant to provide explicit feedback, which is why pseudo relevance feedback automates the manual part, assuming that the top k ranked documents are relevant.
+
+### Implicit relevance feedback
+This technique uses indirect sources of evidence (e.g. clicks on links are assumed to indicate that the page was likely relevant for the query), which are less reliable than explicit, but more useful than pseudo relevance feedback.
+
+----------------------
+
+## **9. Entity-oriented search**
+## Entity
+An entity is an uniquely identifiable thing or object (e.g. people, organisations, products, locations), characterised by its name, type, attributes and relationships to other entities.
+
+### Entity-oriented search
+EOS is the search paradigm of organising and accessing information centered around entities, their attributes and relationships.
+
+From a user perspective, entities are natural units for organising information that offer a richer excperience than conventional document-based retrieval systems.
+
+From a machine perspective, entities allow for a better understanding of search queries, document content and users, making search engines more effective.
+
+### Entity description
+An entity description, or profile document, is an object created for each entity, containing all the existing knowledge about that entity.
+
+Entity descriptions can be indexed and ranked using existing document retrieval algorithms.
+
+### Entity ranking
+With the term-based entity representation, we can use the retrieval models from document ranking for entity scoring by using entities as documents. Most of the effort is put into constructing term-based representations of entities.
+
+Unstructured entity representations with a bag-of-words model usually provide solid performance and a good starting point. Other approaches exist, such as the use of specific characteristics of entities, such as relationships.
+
+### Entity linking
+Entity linking is the task of recognising entity mentions in text and linking them to the corresponding entries in a knowledge base.
+- Mention detection: identification of text snippets that can potentially be linked to entities;
+- Candidate selection: generating a set of candidate entities for each mention;
+- Disambiguation: selecting a single entity (or none) for each mention, based on the context.
+
+## Data sources
+### Knowledge bases
+Knowledge bases organise information around entities, which can be seen as nodes in a graph, with relationships between them as edges.
+
+When it focuses more on the relationships, the term knowledge graph is commonly used.
+
+A standard way of describing entities is the Resource Description Framework (RDF), consisting of a subject (URI of a resource), a predicate (URI of a relationship or property of the subject) and an object (URI of another resource or literal).
+
+### Examples
+- Public knowledge bases: DBpedia (extracted from Wikipedia), Wikidata (operated by the Wikimedia Foundation, considers claims - that must be supported by a reference and can contradict each other - instead of facts);
+- Proprietary knowledge bases: Google Knowledge Graph, Facebook Entity Graph, Microsoft Satori.
+
+----------------------
+
+## **10. Search user interfaces**
+## SUI techniques and elements
+### Context
+IR evolved to a both system- and user-centered view, with the observation that more specific queries improved the relevance of results, thus a SUI is necessary for users to interact with the system.
+
+Multiple factors concur to the overall user experience:
+- Implemented algorithms;
+- Existing metadata;
+- Design and aesthetics of the UIs.
+
+### Elements
+- **Input:** features that allow the searcher to express what they are looking for;
+- **Control:** features that help searchers modify, refine, restrict or expand their input;
+- **Informational:** features that provide results or information about them;
+- **Personalisation:** features that relate specifically to searchers and their previous interactions.
+
+## Evaluation
+### IR style
+Traditionally, IR systems are evaluated based on datasets, specific tasks, and known best results for each task (calculated by human experts).
+
+Success was limited for this approach, since simple evaluation measures like precision and recall were not sufficient.
+
+### Empirical user studies
+Empirical methods are about observing and recording actual user performance (e.g. number of searches, terms per search, results visited, search times, task accuracy). Qualitative methods such as interviews and observations are also possible.
+
+Designing and conducting user studies is hard, because results can be impacted by many factors (e.g. motivation of participants, software bugs) and even small user experience differences (e.g. slight differences in colors).
+
+### Analytical approaches
+In analytical approaches, typically low-cost inspection methods are used by evaluators to assess a design.
+
+There are many analytics methods for UI and UX (e.g. heuristic evaluation, cognitive walkthrough) but fewer specifically designed for SUI.
+
+### Choosing an evaluation approach
+DECIDE process:
+- **D**etermine the goals of the evaluation;
+- **E**xplore the specific questions to be answered;
+- **C**hoose an evaluation paradigm;
+- **I**dentify practical issues in performing such an evaluation;
+- **D**ecide how to deal with any ethical issues;
+- **E**valuate, interpret and present data.
+
+## Design principles and heuristics
+1. Visibility: keep the user informed of what is happening;
+2. Language: adopt language that the user can understand;
+3. Control and freedom: do not block users in a hole or fixed pathway, instead provide mechanisms for users to recover from them;
+4. Consistency: adopt a consistent design;
+5. Error prevention: make it hard to do unproductive things (i.e. avoid the need to undo actions);
+6. Support recognitions: help users not have to remember what they have done or need to do;
+7. Flexibility and efficiency: provide features for experienced users to be more productive and efficient;
+8. Aesthetics and minimalism: keep design simple and minimalist;
+9. Clear error messages: provide informative and useful error messages;
+10. Help and documentation: provide help as documentation, FAQs and examples.
