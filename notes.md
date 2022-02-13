@@ -95,7 +95,7 @@ Makefiles can be used to document and setup data pipelines, since they enable th
 
 ## Retrieval tasks evaluated in TREC
 - TREC is organized into tracks, each of them providing a set of documents and queries.
-- The participants have to build a system for the queries will be held against.
+- The participants have to build a system for the queries to be held against.
 - They must submit their created system's responses to that set of queries.
 - These responses are then evaluated by the organisers.
 - The details can vary from track to track and from year to year.
